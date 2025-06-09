@@ -43,10 +43,10 @@ public class Database {
         }
     }
 
-    public static String authenticate(String accNum, String password) {
-        String sql = "SELECT role FROM accounts WHERE account_number = ? AND password = ?";
+    public static String authenticate(String holder, String password) {
+        String sql = "SELECT role FROM accounts WHERE holder = ? AND password = ?";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, accNum);
+            ps.setString(1, holder);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
