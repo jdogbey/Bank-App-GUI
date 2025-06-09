@@ -1,9 +1,8 @@
 package src.gui;
 
-import database.Database;
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+import src.database.Database;
 
 public class Login extends JFrame {
 

@@ -84,4 +84,13 @@ public class Database {
             ps.executeUpdate();
         }
     }
+
+    public static int deleteAccount(String accNum) throws SQLException {
+        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(
+                "DELETE FROM accounts WHERE account_number = ?")) {
+            ps.setString(1, accNum);
+            return ps.executeUpdate(); // returns # of rows deleted
+        }
+    }
+
 }
