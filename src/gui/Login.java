@@ -45,8 +45,14 @@ public class Login extends JFrame {
             try {
                 if (role.equals("customer")) {
                     String holder = Database.getHolder(accountNumber);
-                    double balance = Database.getBalance(accountNumber);
-                    new Account(accountNumber, holder, balance).setVisible(true);
+                    java.util.ArrayList<Account> accounts = new java.util.ArrayList<>();
+                    // Retrieve all account numbers for this holder
+                    java.util.List<String> accountNumbers = Database.getAccountsByHolder(holder);
+                    for (String accNum : accountNumbers) {
+                        double bal = Database.getBalance(accNum);
+                        accounts.add(new Account(accNum, holder, bal));
+                    }
+                    new CustomerDashboard(holder, accounts).setVisible(true);
                 } else if (role.equals("manager")) {
                     new ManagerDashboard().setVisible(true); // to be implemented next
                 }

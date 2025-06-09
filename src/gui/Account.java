@@ -106,6 +106,38 @@ public class Account extends JFrame {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    // Programmatic deposit (without GUI interaction)
+    public void depositAmount(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            updateBalance();
+            updateHistory("Deposited (transfer): $" + String.format("%.2f", amount));
+        }
+    }
+
+    // Programmatic withdraw (without GUI interaction)
+    public boolean withdrawAmount(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            updateBalance();
+            updateHistory("Withdrew (transfer): $" + String.format("%.2f", amount));
+            return true;
+        }
+        return false;
+    }
+
     // Main method for testing
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

@@ -93,4 +93,17 @@ public class Database {
         }
     }
 
+    public static java.util.List<String> getAccountsByHolder(String holder) throws SQLException {
+        java.util.List<String> accountNumbers = new java.util.ArrayList<>();
+        String sql = "SELECT account_number FROM accounts WHERE holder = ?";
+        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, holder);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                accountNumbers.add(rs.getString("account_number"));
+            }
+        }
+        return accountNumbers;
+    }
+
 }
