@@ -1,9 +1,12 @@
-import javax.swing.*;
+package src.gui;
+
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
+import javax.swing.*;
+import src.database.Database;
 
 public class Account extends JFrame {
+
     // Fields for account details
     private String accountNumber;
     private String accountHolder;
